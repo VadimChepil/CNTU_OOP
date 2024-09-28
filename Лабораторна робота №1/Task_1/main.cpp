@@ -12,7 +12,7 @@ int main()
 
     cout << "Name human: " << Human.getName() << endl;
     cout << "Id human: " << Human.getId() << endl;
-    cout << "Salary human: " << Human.getSalary() << "$" << endl;
+    cout << "Salary human: 0." << Human.getSalary() << "$" << endl;
 
     return 0;
 }
