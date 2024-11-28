@@ -2,7 +2,7 @@
 #define WAREHOUSE_H
 
 #include <vector>
-#include "sparePart.h"
+#include "sparepart.h"
 
 using namespace std;
 

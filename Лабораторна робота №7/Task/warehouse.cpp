@@ -9,7 +9,7 @@ vector<SparePart>::iterator Warehouse::findPartByName(const string& name)
 {
     return find_if(parts.begin(), parts.end(), [&name](const SparePart& part)
     {
-        return part.name == name;
+        return part.getName() == name;
     });
 }
 
@@ -22,49 +22,53 @@ void Warehouse::displayParts() const
 {
     if (parts.empty())
     {
-        cout << "The warehouse is empty.\n";
+        cout << "The warehouse is empty." << endl;
         return;
     }
 
-    cout << string(65, '~') << "\n";
+    cout << string(65, '~') << endl;
     cout << left << "|" << setw(20) << "Name"
                 << "|" << setw(20) << "Manufacturer"
                 << "|" << setw(10) << "Price"
-                << "|" << setw(10) << "Quantity" << "|" << "\n";
+                << "|" << setw(10) << "Quantity" << "|" << endl;
 
 
-    for (SparePart part : parts)
+    for (const SparePart& part : parts)
     {
         part.display();
     }
-    cout << string(65, '~') << "\n";
+    cout << string(65, '~') << endl;
 }
 
 void Warehouse::removePart(const string& name)
 {
     vector<SparePart>::iterator it = findPartByName(name);
+    string message = "The part \"";
     if (it != parts.end())
     {
         parts.erase(it);
-        cout << "The part \"" << name << "\" was removed from the warehouse.\n";
+        message += name + "\" was removed from the warehouse.";
     }
     else
     {
-        cout << "The part \"" << name << "\" was not found.\n";
+        message += name + "\" was not found.";
     }
+    cout << message << endl;
 }
 
 void Warehouse::updatePart(const string& name, double newPrice, int newQuantity)
 {
     vector<SparePart>::iterator it = findPartByName(name);
+    string message = "The part \"";
     if (it != parts.end())
     {
-        it->price = newPrice;
-        it->quantity = newQuantity;
-        cout << "The part \"" << name << "\" was updated.\n";
+        it->setPrice(newPrice);
+        it->setQuantity(newQuantity);
+        message += name + "\" was updated.";
     }
     else
     {
-        cout << "The part \"" << name << "\" was not found.\n";
+        message += name + "\" was not found.";
     }
+    cout << message << endl;
 }
